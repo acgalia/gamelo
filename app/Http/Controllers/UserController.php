@@ -14,7 +14,9 @@ class UserController extends Controller
 {
     public function showMenu(){
     	$genres = Genre::all();
-    	$games = Game::all();
+    	$games = Game::orderBy('id', 'desc')->paginate(3);
+        // $games = Game::paginate(3);
+        // $paginatedgame = ;
         // $reviews = Review::withCount('comments')->get();
         // foreach(){
             
@@ -28,25 +30,40 @@ class UserController extends Controller
         
 
     	// dd($genres);
-    	return view('/users.menu', compact('genres', 'games', 'reviews'));
+    	return view('/users.menu', compact('genres', 'games'));
     }
 
     public function showGame($id){
     	$show_game = Game::find($id);
-        $reviews = Review::all();
+        $reviews = Review::orderBy('id', 'desc')->get();
+        $game_reviews = $show_game->reviews();
 
-        return view('/users.game', compact('show_game', 'reviews'));
+        $gameReviewCount = $game_reviews->where('game_id', $id)->count();
 
-        // $reviews = Review::where('game_id', $id)->get();
-    	
+        // dd($sample);           
+
+        // $reviewcount = count($reviews);
+
+        // $reviews = Review::all()->where('game_id', '=', $show_game)->get();
+        // $reviewCount = Review::where('user_id', 1)->count();
+
+        return view('/users.game', compact('show_game', 'reviews', 'reviewcount', 'gameReviewCount'));
+   	
     }
 
     public function reviewGame($gameid, Request $request){
+        $rules = array(
+            'rating' => 'required',
+            'comment' => 'required'
+        );
+        $this->validate($request, $rules);
+
         $review = new Review;
         $review->user_id = Auth::user()->id;
         $review->save();
 
-        $review->games()->attach($gameid, ['review_id'=>$review->id, 'rating' => $request->rating, 'comment' => $request->comment]);     
+        $review->games()->attach($gameid, ['review_id'=>$review->id, 'rating' => $request->rating, 'comment' => $request->comment]);
+
         Session::flash("addReview", "Review added successfully!");
         return redirect("/menu/$gameid");
     }
@@ -83,6 +100,11 @@ class UserController extends Controller
 
     public function updateReview($id, Request $request){
         $update_review = Review::find($id);
+
+        $rules = array(
+            'rating' => 'required',
+            'comment' => 'required'
+        );
         // foreach($update_review->games as $game){
             
                 // $rules = array(
@@ -90,7 +112,7 @@ class UserController extends Controller
                 //     'gameid' => 'required'
                 // );
 
-                // $this->validate($request, $rules);
+                $this->validate($request, $rules);
                 $gameid = $request->gameid;
                 $update_review->games()->updateExistingPivot($gameid, ['comment' => $request->comment]);
 

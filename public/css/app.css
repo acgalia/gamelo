@@ -6,7 +6,7 @@
 }
 
 body {
-    background-image: url("/images/background.png");
+    background-image: url("/images/stripes.png");
     background-color: black; /* Used if the image is unavailable */
     background-position: 0; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
@@ -49,6 +49,10 @@ body {
 .rate > input:checked ~ label:hover ~ label,
 .rate > label:hover ~ input:checked ~ label {
     color: #c59b08;
+}
+
+#logreg {
+    background: #3e03b7;
 }
 /*stars css end*/
 

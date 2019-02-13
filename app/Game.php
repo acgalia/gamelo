@@ -10,12 +10,12 @@ class Game extends Model
 		return $this->belongsTo('\App\Genre');
   	}
 
-  	public function reviews(){
-  		return $this->hasMany('\App\Review');
-  	}
-
   	// public function reviews(){
-   //  	return $this->belongsToMany('\App\Review', 'game_reviews')->withPivot('rating', 'comment')->withTimestamps();
-   //  }
+  	// 	return $this->hasMany('\App\Review');
+  	// }
+
+  	public function reviews(){
+    	return $this->belongsToMany('\App\Review', 'game_reviews')->withPivot('rating', 'comment')->withTimestamps();
+    }
   	
 }

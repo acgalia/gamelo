@@ -64,6 +64,9 @@
 					<div class="form-group">
 						<button type="submit" class="btn btn-primary">Save</button>
 					</div>
+					<div class="form-group">
+						<a href="/menu" type="button" class="btn btn-dark">Cancel</a>
+					</div>
 
 				</form>
 				</div>
