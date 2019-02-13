@@ -37,13 +37,13 @@
 	<div class="row">
 		<div class="col-lg-1"></div>
 		<div class="col-lg-10">
-			<div class="card card-block my-5">
+			<div id="gamemenu" class="card card-block my-5">
 				<img class="card-img-top mx-auto my-auto py-3" src="/{{$show_game->image_path}}" alt="Card image cap" style="height: 50%; width: 80%;">
 				<div class="card-body">
 					<h3>Title: {{$show_game->title}}</h3>
-					<h5>Developer: {{$show_game->developer}}</h5>
-					<h5>Date Released: {{$show_game->date_released}}</h5>
-					<p class="card-text text-justify">{{$show_game->content}}</p>
+					<h5 class="text-white-50">Developer: {{$show_game->developer}}</h5>
+					<h5 class="text-muted">Date Released: {{$show_game->date_released}}</h5>
+					<p class="card-text text-indent mt-3">{{$show_game->content}}</p>
 					@if(Auth::user()->admin == 1)
 					<div class="row">
 						<div class="col-lg-6 my-1">
@@ -77,10 +77,10 @@
 							@foreach($review->games as $game)
 							@if($game->pivot->game_id == $show_game->id)
 							<div class="card my-2">
-							  <div class="card-body">
+							  <div class="card-body text-dark">
 							    <div class="row">
 							    	<div class="col-lg-6">
-							    		{{$game->pivot->comment}} rating: {{$game->pivot->rating}}<p><small>{{$game->pivot->updated_at->diffForHUmans()}} by: {{$review->user->username}}</small><p>
+							    		{{$game->pivot->comment}} {{-- rating: {{$game->pivot->rating}} --}}<p><small>{{$game->pivot->updated_at->diffForHUmans()}} by: {{$review->user->username}}</small><p>
 						    		</div>
 							    	<div class="col-lg-6">
 							    		<div class="row">
@@ -92,7 +92,7 @@
 							    			<div class="col-lg-4 my-2">
 							    				@if(Auth::user()->id == $review->user_id){{-- to show access buttons for edit/delete review --}}
 							    				<form method="GET" action="/review/{{$review->id}}/edit">
-													<p><button type="submit" class="btn btn-secondary">Edit</button></p>
+													<p><button type="submit" class="btn btn-dark">Edit</button></p>
 												</form>
 												@endif
 							    			</div>
@@ -110,7 +110,7 @@
 							{{-- Delete Review Modal --}}
 							<div id="deleteReview{{ $review->id }}" class="modal" tabindex="-1" role="dialog">
 								<div class="modal-dialog" role="document">
-									<div class="modal-content">
+									<div class="modal-content text-dark">
 										<div class="modal-header">
 											<h5 class="modal-title">Delete Review</h5>
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -126,7 +126,7 @@
 											<form method="POST" action="/review/{{$review->id}}/delete">
 												{{ csrf_field() }}
 												{{ method_field('DELETE') }}
-												<button type="submit" class="btn btn-danger">Confirm</button>			      		
+												<button type="submit" class="btn btn-dark">Confirm</button>			      		
 											</form>
 										</div>
 										@endif

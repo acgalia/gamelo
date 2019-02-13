@@ -14,7 +14,7 @@
 		<div class="row">
 			<div class="col-lg-1"></div>
 			<div class="col-lg-10 p-5">
-				<div class="card p-5">
+				<div id="logreg" class="card p-5 text-white">
 					@if($errors->any())
 					<ul class="list-unstyled">
 						@foreach($errors->all() as $error)
@@ -63,7 +63,7 @@
 					</div>
 
 					<div class="form-group">
-						<button type="submit" class="btn btn-primary">Save</button>
+						<button type="submit" class="btn btn-dark border-white">Save</button>
 					</div>
 
 				</form>

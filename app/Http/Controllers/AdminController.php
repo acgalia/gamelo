@@ -6,6 +6,7 @@ use Session;
 use Illuminate\Http\Request;
 use App\Game;
 use App\Genre;
+use App\Review;
 
 class AdminController extends Controller
 {
@@ -41,13 +42,17 @@ class AdminController extends Controller
     	$game->image_path = $destination.$image_name;
 
     	$game->save();
-    	Session::flash("addGame", "Game added successfully!");
+    	Session::flash("addGame", "Game added.");
     	return redirect ('/admindashboard');
     }
 
     public function deleteGame($id){
         $delete_game = Game::find($id);
+
+        $delete_game->reviews()->detach();//need to detach from pivot table
+        // $delete_game->reviews()->delete(); //delete from review still not working
         $delete_game->delete();
+        Session::flash("deleteGame", "Game deleted.");
         return redirect('/menu');
     }
 
@@ -87,7 +92,7 @@ class AdminController extends Controller
         } 
 
         $update_game->save();
-        Session::flash("updatedGame", "Game Updated!");
+        Session::flash("updatedGame", "Game Updated.");
         return redirect('/menu/'.$id);
     }
 }

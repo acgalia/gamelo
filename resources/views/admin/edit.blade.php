@@ -8,7 +8,7 @@
 	<div class="row">
 		<div class="col-lg-1"></div>
 		<div class="col-lg-10">
-			<div class="card p-5">
+			<div id="logreg" class="card p-5 text-white">
 					@if($errors->any())
 					<ul class="list-unstyled">
 						@foreach($errors->all() as $error)
@@ -61,13 +61,18 @@
 						</select>
 					</div>
 
-					<div class="form-group">
-						<button type="submit" class="btn btn-primary">Save</button>
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="form-group">
+								<a href="/menu" class="btn border form-control">Cancel</a>								
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="form-group">
+								<button type="submit" class="btn btn-dark form-control">Save</button>
+							</div>
+						</div>
 					</div>
-					<div class="form-group">
-						<a href="/menu" type="button" class="btn btn-dark">Cancel</a>
-					</div>
-
 				</form>
 				</div>
 		</div>

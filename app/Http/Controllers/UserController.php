@@ -65,7 +65,8 @@ class UserController extends Controller
         $review->games()->attach($gameid, ['review_id'=>$review->id, 'rating' => $request->rating, 'comment' => $request->comment]);
 
         Session::flash("addReview", "Review added successfully!");
-        return redirect("/menu/$gameid");
+        // return redirect("/menu/$gameid");
+        return back();
     }
 
     public function showComment(){

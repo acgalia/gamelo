@@ -52,8 +52,14 @@ body {
 }
 
 #logreg {
-    background: #3e03b7;
+    background: #25124e; /*dark blue*/
 }
+
+#gamemenu{
+    background-color: rgba(37, 18, 78, 0.7);
+    color: white;
+}
+
 /*stars css end*/
 
 /*!
