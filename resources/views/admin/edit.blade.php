@@ -9,17 +9,17 @@
 		<div class="col-lg-1"></div>
 		<div class="col-lg-10">
 			<div id="logreg" class="card p-5 text-white">
-					@if($errors->any())
-					<ul class="list-unstyled">
-						@foreach($errors->all() as $error)
-						<li>
-							<div class="alert alert-danger">{{ $error }}</div>
-						</li>
-						@endforeach
-					</ul>				
-					@endif
+				@if($errors->any())
+				<ul class="list-unstyled">
+					@foreach($errors->all() as $error)
+					<li>
+						<div class="alert alert-danger">{{ $error }}</div>
+					</li>
+					@endforeach
+				</ul>				
+				@endif
 
-					<form method="POST" action="/menu/{{ $edit_game->id }}/edit" enctype="multipart/form-data">
+				<form method="POST" action="/menu/{{ $edit_game->id }}/edit" enctype="multipart/form-data">
 						<h2>Edit Game</h2>
 					{{ csrf_field() }}
 					{{ method_field('PATCH') }}
@@ -74,7 +74,7 @@
 						</div>
 					</div>
 				</form>
-				</div>
+			</div>
 		</div>
 		<div class="col-lg-1"></div>
 	</div>

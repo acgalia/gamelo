@@ -64,6 +64,7 @@ class AdminController extends Controller
 
     public function updateGame($id, Request $request){
         $update_game = Game::find($id);
+        $genres = Genre::all();
 
         $rules = array(
             'title' => 'required',
