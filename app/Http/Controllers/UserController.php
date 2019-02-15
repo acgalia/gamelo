@@ -13,8 +13,8 @@ use Auth;
 class UserController extends Controller
 {
     public function showMenu(){
-    	$genres = Genre::all();
-    	$games = Game::orderBy('id', 'desc')->paginate(3);
+        $genres = Genre::all();
+        $games = Game::orderBy('id', 'desc')->paginate(3);
         // $games = Game::paginate(3);
         // $paginatedgame = ;
         // $reviews = Review::withCount('comments')->get();
@@ -29,15 +29,14 @@ class UserController extends Controller
             // }
         
 
-    	// dd($genres);
-    	return view('/users.menu', compact('genres', 'games'));
+        // dd($genres);
+        return view('/users.menu', compact('genres', 'games'));
     }
 
     public function showGame($id){
-    	$show_game = Game::find($id);
+        $show_game = Game::find($id);
         $reviews = Review::orderBy('id', 'desc')->get();
         $game_reviews = $show_game->reviews();
-        $genres = Genre::all();
 
         $gameReviewCount = $game_reviews->where('game_id', $id)->count();
 
@@ -48,8 +47,8 @@ class UserController extends Controller
         // $reviews = Review::all()->where('game_id', '=', $show_game)->get();
         // $reviewCount = Review::where('user_id', 1)->count();
 
-        return view('/users.game', compact('show_game', 'reviews', 'reviewcount', 'gameReviewCount', 'genres'));
-   	
+        return view('/users.game', compact('show_game', 'reviews', 'reviewcount', 'gameReviewCount'));
+    
     }
 
     public function reviewGame($gameid, Request $request){

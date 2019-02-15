@@ -11,39 +11,39 @@ use App\Review;
 class AdminController extends Controller
 {
     public function showDashboard(){
-    	$genres = Genre::all();
-    	return view('admin.admindashboard', compact('genres'));
+        $genres = Genre::all();
+        return view('admin.admindashboard', compact('genres'));
     }
 
     public function saveGame(Request $request){
-    	//input name from /addgame form
-    	$rules = array(
-    		'title' => 'required',
-    		'developer' => 'required',
-    		'date_released' => 'required',
-    		'content' => 'required',
-    		'image_path' => 'required|image|',
-    		'genre' => 'required'
-    	);
-    		//to validate $request from form
-    	$this->validate($request, $rules);
+        //input name from /addgame form
+        $rules = array(
+            'title' => 'required',
+            'developer' => 'required',
+            'date_released' => 'required',
+            'content' => 'required',
+            'image_path' => 'required|image|',
+            'genre' => 'required'
+        );
+            //to validate $request from form
+        $this->validate($request, $rules);
 
-    	$game = new Game;
-    	$game->title = $request->title;
-    	$game->developer = $request->developer;
-    	$game->date_released = $request->date_released;
-    	$game->content = $request->content;
-    	$game->genre_id = $request->genre;
+        $game = new Game;
+        $game->title = $request->title;
+        $game->developer = $request->developer;
+        $game->date_released = $request->date_released;
+        $game->content = $request->content;
+        $game->genre_id = $request->genre;
 
-    	$image = $request->file('image_path');
-    	$image_name = time(). "." .$image->getClientOriginalExtension(); //151688578.jpg
-    	$destination = "images/";
-    	$image->move($destination, $image_name);
-    	$game->image_path = $destination.$image_name;
+        $image = $request->file('image_path');
+        $image_name = time(). "." .$image->getClientOriginalExtension(); //151688578.jpg
+        $destination = "images/";
+        $image->move($destination, $image_name);
+        $game->image_path = $destination.$image_name;
 
-    	$game->save();
-    	Session::flash("addGame", "Game added.");
-    	return redirect ('/admindashboard');
+        $game->save();
+        Session::flash("addGame", "Game added.");
+        return redirect ('/admindashboard');
     }
 
     public function deleteGame($id){
@@ -64,7 +64,6 @@ class AdminController extends Controller
 
     public function updateGame($id, Request $request){
         $update_game = Game::find($id);
-        $genres = Genre::all();
 
         $rules = array(
             'title' => 'required',
