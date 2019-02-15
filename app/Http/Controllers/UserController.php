@@ -15,20 +15,7 @@ class UserController extends Controller
     public function showMenu(){
         $genres = Genre::all();
         $games = Game::orderBy('id', 'desc')->paginate(3);
-        // $games = Game::paginate(3);
-        // $paginatedgame = ;
-        // $reviews = Review::withCount('comments')->get();
-        // foreach(){
-            
-        // }
-            // foreach($games as $game){
-            //     $game_id = $game->id;
-            //     $reviews = Review::all()
-            //     ->where('game_id', $game_id)
-            //     ->get();
-            // }
         
-
         // dd($genres);
         return view('/users.menu', compact('genres', 'games'));
     }
@@ -37,17 +24,11 @@ class UserController extends Controller
         $show_game = Game::find($id);
         $reviews = Review::orderBy('id', 'desc')->get();
         $game_reviews = $show_game->reviews();
+        $genres = Genre::all();
 
         $gameReviewCount = $game_reviews->where('game_id', $id)->count();
 
-        // dd($sample);           
-
-        // $reviewcount = count($reviews);
-
-        // $reviews = Review::all()->where('game_id', '=', $show_game)->get();
-        // $reviewCount = Review::where('user_id', 1)->count();
-
-        return view('/users.game', compact('show_game', 'reviews', 'reviewcount', 'gameReviewCount'));
+        return view('/users.game', compact('show_game', 'reviews', 'gameReviewCount', 'genres'));
     
     }
 
@@ -77,10 +58,6 @@ class UserController extends Controller
 
     public function deleteReview($id){ //should I make a request?
         $delete_review = Review::find($id);
-        // dd($delete_review);
-        // $delete_review = Review::where('id',$id)->delete();
-        // $gameid = $delete_review->game_id; //wrong! - (calling game_id in pivot)
-        // dd($delete_review);
 
         $delete_review->games()->detach(); //need to detach from pivot table
         $delete_review->delete($id);
@@ -91,13 +68,13 @@ class UserController extends Controller
 
     }
 
-    public function editReview($id){
-        $edit_review = Review::find($id);
-        // foreach($edit_review->games as $game){
-            return view('/users.editReview', compact('edit_review'));
-        // }
+    // public function editReview($id){
+    //     $edit_review = Review::find($id);
+    //     // foreach($edit_review->games as $game){
+    //         return view('/users.editReview', compact('edit_review'));
+    //     // }
 
-    }
+    // }
 
     public function updateReview($id, Request $request){
         $update_review = Review::find($id);

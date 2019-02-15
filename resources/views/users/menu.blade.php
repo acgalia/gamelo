@@ -18,7 +18,7 @@
 		<div class="col-lg-10">
 			<div id="gamemenu" class="card text-white">
 			  <div class="card-body">
-			    <h1>Menu of the Page</h1>
+			    <h1>Menu Page</h1>
 			  </div>
 			</div>
 		</div>
