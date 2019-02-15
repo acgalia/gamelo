@@ -5,6 +5,9 @@
 @section('admin_body')
 
 <div class="container">
+	GAME PAGE 
+</div>
+{{-- <div class="container">
 	@if(Session::has("addReview"))
 	<div class="alert alert-success">
 		{{ Session::get('addReview') }}	
@@ -32,8 +35,8 @@
 			</li>
 			@endforeach
 		</ul>				
-	@endif
-
+	@endif --}}
+{{-- 
 	<div class="row">
 		<div class="col-lg-1"></div>
 		<div class="col-lg-10">
@@ -51,13 +54,13 @@
 						</div>
 
 						<div class="col-lg-6 my-1">
-							<a href="" class="btn btn-dark form-control border" data-toggle="modal" data-target="#editGame{{ $show_game->id }}">Edit Game</a>
+							<a href="" class="btn btn-dark form-control border" data-toggle="modal" data-target="#editGame{{ $show_game->id }}">Edit Game</a> --}}
 							{{-- <form method="GET" action="/menu/{{$show_game->id}}/edit">
 								{{csrf_field()}}
 								{{method_field('EDIT')}}
 								<button type="submit" class="btn btn-dark form-control">Edit</button>												
 							</form> --}}	
-						</div>		    									    		
+				{{-- 		</div>		    									    		
 					</div>
 					@endif
 				</div>
@@ -81,8 +84,8 @@
 							  <div class="card-body text-dark">
 							    <div class="row">
 							    	<div class="col-lg-6">
-							    		{{$game->pivot->comment}} {{-- rating: {{$game->pivot->rating}} --}}<p><small>{{$game->pivot->updated_at->diffForHUmans()}} by: {{$review->user->username}}</small><p>
-						    		</div>
+							    		{{$game->pivot->comment}} --}} {{-- rating: {{$game->pivot->rating}} --}}{{-- <p><small>{{$game->pivot->updated_at->diffForHUmans()}} by: {{$review->user->username}}</small><p> --}}
+						    	{{-- 	</div>
 							    	<div class="col-lg-6">
 							    		<div class="row">
 							    			<div class="col-lg-3 my-2">
@@ -91,12 +94,12 @@
 												@endif
 							    			</div>
 							    			<div class="col-lg-4 my-2">
-							    				@if(Auth::user()->id == $review->user_id){{-- to show access buttons for edit/delete review --}}
-							    				<a href="" class="btn btn-white border" data-toggle="modal" data-target="#editReview{{ $review->id }}">Edit</a>
+							    				@if(Auth::user()->id == $review->user_id) --}}{{-- to show access buttons for edit/delete review --}}
+							    				{{-- <a href="" class="btn btn-white border" data-toggle="modal" data-target="#editReview{{ $review->id }}">Edit</a> --}}
 							    				{{-- <form method="GET" action="/review/{{$review->id}}/edit">
 													<p><button type="submit" class="btn btn-dark">Edit</button></p>
 												</form> --}}
-												@endif
+									{{-- 			@endif
 							    			</div>
 							    		</div>
 								    	</div>
@@ -106,11 +109,11 @@
 								
 							
 							  </div>
-							</div>{{-- end card --}}
+							</div> --}}{{-- end card --}}
 							
-							@endif
+							{{-- @endif --}}
 							{{-- Delete Review Modal --}}
-							<div id="deleteReview{{ $review->id }}" class="modal" tabindex="-1" role="dialog">
+							{{-- <div id="deleteReview{{ $review->id }}" class="modal" tabindex="-1" role="dialog">
 								<div class="modal-dialog" role="document">
 									<div class="modal-content text-dark">
 										<div class="modal-header">
@@ -118,9 +121,9 @@
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">&times;</span>
 											</button>
-										</div>
+										</div> --}}
 										{{--  @foreach($reviews as $review) --}}
-										@if($review->id == $review->id)
+										{{-- @if($review->id == $review->id)
 										<div class="modal-body">
 											<p>Do you want to this comment "{{$game->pivot->comment}}"?</p>
 										</div>
@@ -131,14 +134,14 @@
 												<button type="submit" class="btn btn-dark">Confirm</button>			      		
 											</form>
 										</div>
-										@endif
+										@endif --}}
 										{{--  @endforeach --}}
-									</div>
+							{{-- 		</div>
 								</div>
-							</div>
+							</div> --}}
 
 							{{-- Edit Review Modal --}}
-
+{{-- 
 							<div id="editReview{{ $review->id }}" class="modal" tabindex="-1" role="dialog">
 								<div class="modal-dialog" role="document">
 									<div class="modal-content text-dark">
@@ -147,9 +150,9 @@
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">&times;</span>
 											</button>
-										</div>
+										</div> --}}
 										{{--  @foreach($reviews as $review) --}}
-										@if($review->id == $review->id)
+	{{-- 									@if($review->id == $review->id)
 										<div class="modal-body">
 											<form method="POST" action="/review/{{$review->id}}/edit" enctype="multipart/form-data">
 												{{ csrf_field() }}
@@ -174,9 +177,9 @@
 												
 											</form>
 										</div>
-										@endif
+										@endif --}}
 										{{--  @endforeach --}}
-									</div>
+{{-- 									</div>
 								</div>
 							</div>
 
@@ -185,12 +188,12 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> --}}
 
 			{{-- END OF PAGE --}}
 
 			{{-- Edit Game Modal --}}
-			<div id="editGame{{ $show_game->id }}" class="modal" tabindex="-1" role="dialog">
+{{-- 			<div id="editGame{{ $show_game->id }}" class="modal" tabindex="-1" role="dialog">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -209,8 +212,8 @@
 									</li>
 									@endforeach
 								</ul>				
-								@endif
-
+								@endif --}}
+{{-- 
 								<form method="POST" action="/menu/{{ $show_game->id }}/edit" enctype="multipart/form-data">
 										<h2>Edit Game</h2>
 									{{ csrf_field() }}
@@ -254,11 +257,11 @@
 									</div>
 
 									<div class="row">
-										<div class="col-lg-6">
+										<div class="col-lg-6"> --}}
 											{{-- <div class="form-group">
 												<a href="/menu" class="btn border form-control">Cancel</a>							
 											</div> --}}
-										</div>
+		{{-- 								</div>
 										<div class="col-lg-6">
 											<div class="form-group">
 												<button type="submit" class="btn btn-dark form-control">Save</button>
@@ -271,10 +274,10 @@
 						</div>
 				</div>
 			</div>
-			</div>
+			</div> --}}
 
 			{{-- Delete Game Modal --}}
-			<div id="deleteModal" class="modal" tabindex="-1" role="dialog">
+	{{-- 		<div id="deleteModal" class="modal" tabindex="-1" role="dialog">
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -295,10 +298,10 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> --}}
 
 			{{-- Review Modal --}}
-			<div id="reviewModal" class="modal" tabindex="-1" role="dialog">
+			{{-- <div id="reviewModal" class="modal" tabindex="-1" role="dialog">
 				<div class="modal-dialog" role="document">
 					@if($errors->any())
 						<ul class="list-unstyled">
@@ -342,7 +345,7 @@
 						</div>
 					</form>
 				</div>
-			</div>
+			</div> --}}
 
 			
 
